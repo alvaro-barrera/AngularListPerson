@@ -27,17 +27,15 @@
       />
     </div>
     <div class="col">
-      <button class="btn btn-primary" type="submit" (click)="storePerson()">Agregar</button>
+      <button class="btn btn-primary" type="submit" (click)="storePerson()">
+        Agregar
+      </button>
     </div>
   </form>
-</div>
-<div class="container">
-  <hr>
-  <div class="row">
-    <div class="col">
-      <div *ngFor="let person of persons; let i = index">
-        {{ i + 1 }}. {{ person.name }} {{ person.lastname }}
-      </div>
-    </div>
-  </div>
+  <hr />
+  <app-person
+    [person]="person"
+    [i]="i"
+    *ngFor="let person of persons; let i = index"
+  ></app-person>
 </div>
