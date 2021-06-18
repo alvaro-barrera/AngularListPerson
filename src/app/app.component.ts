@@ -15,7 +15,11 @@ export class AppComponent implements OnInit {
   constructor(
     private logginService: LoggingService,
     private personsService: PersonsService
-  ) {}
+  ) {
+    this.personsService.greeting.subscribe((index: number) =>
+      alert(`El índice es: ${index}`)
+    );
+  }
 
   ngOnInit() {
     this.persons = this.personsService.persons;

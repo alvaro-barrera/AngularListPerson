@@ -1,7 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <div>{{ i + 1 }}. {{ person.name }} {{ person.lastname }}</div>
+      <div>
+        {{ i + 1 }}. {{ person.name }} {{ person.lastname }}
+        <button class="btn btn-sm btn-info" (click)="emitGreeting()">Editar</button>
+      </div>
     </div>
   </div>
 </div>
