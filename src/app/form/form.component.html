@@ -7,7 +7,7 @@
       id="name"
       name="name"
       placeholder="Nombre"
-      [(ngModel)]="nameInput"
+      #nameRef
     />
   </div>
   <div class="form-group col-md-2">
@@ -18,11 +18,12 @@
       id="lastname"
       name="lastname"
       placeholder="Apellido"
-      [(ngModel)]="lastnameInput"
+      #lastnameRef
+
     />
   </div>
   <div class="col">
-    <button class="btn btn-primary" type="submit" (click)="storePerson()">
+    <button class="btn btn-primary" type="submit" (click)="storePerson(nameRef,lastnameRef)">
       Agregar
     </button>
   </div>
