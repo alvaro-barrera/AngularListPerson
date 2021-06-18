@@ -1,24 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoggingService } from './LoggingService.service';
 import { Person } from './person.model';
+import { PersonsService } from './persons.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'AngularListPersonApp';
-  persons: Person[] = [
-    new Person('Álvaro', 'Barrera'),
-    new Person('Juan', 'Perez'),
-  ];
+  persons: Person[] = [];
 
-  constructor(private logginService: LoggingService) {}
+  constructor(
+    private logginService: LoggingService,
+    private personsService: PersonsService
+  ) {}
+
+  ngOnInit() {
+    this.persons = this.personsService.persons;
+  }
+
   personStored(person: Person) {
-    this.persons.push(person);
-    this.logginService.sendMessageToConsole(
-      `Persona agregada al arreglo: ${person.name}`
-    );
+    this.personsService.addPerson(person);
   }
 }

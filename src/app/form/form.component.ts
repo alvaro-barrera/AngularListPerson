@@ -1,13 +1,14 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
+  // EventEmitter,
   OnInit,
-  Output,
+  // Output,
   ViewChild,
 } from '@angular/core';
 import { LoggingService } from '../LoggingService.service';
 import { Person } from '../person.model';
+import { PersonsService } from '../persons.service';
 
 @Component({
   selector: 'app-form',
@@ -15,13 +16,16 @@ import { Person } from '../person.model';
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent implements OnInit {
-  @Output() personCreate = new EventEmitter<Person>();
+  // @Output() personCreate = new EventEmitter<Person>();
   // nameInput: string = '';
   // lastnameInput: string = '';
   @ViewChild('nameRef') nameRef: ElementRef;
   @ViewChild('lastnameRef') lastnameRef: ElementRef;
 
-  constructor(private logginService: LoggingService) {}
+  constructor(
+    private logginService: LoggingService,
+    private personsService: PersonsService
+  ) {}
   ngOnInit() {}
 
   storePerson() {
@@ -30,9 +34,10 @@ export class FormComponent implements OnInit {
       this.nameRef.nativeElement.value,
       this.lastnameRef.nativeElement.value
     );
-    this.logginService.sendMessageToConsole(
-      `Persona enviada: ${person.name} ${person.lastname}`
-    );
-    this.personCreate.emit(person);
+    // this.logginService.sendMessageToConsole(
+    //   `Persona enviada: ${person.name} ${person.lastname}`
+    // );
+    // this.personCreate.emit(person);
+    this.personsService.addPerson(person);
   }
 }
