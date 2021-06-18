@@ -12,10 +12,7 @@ export class AppComponent {
     new Person('Álvaro', 'Barrera'),
     new Person('Juan', 'Perez'),
   ];
-  nameInput: string = '';
-  lastnameInput: string = '';
-  storePerson() {
-    let person = new Person(this.nameInput, this.lastnameInput);
+  personStored(person: Person) {
     this.persons.push(person);
   }
 }
