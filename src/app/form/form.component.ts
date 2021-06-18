@@ -17,10 +17,10 @@ import { PersonsService } from '../persons.service';
 })
 export class FormComponent implements OnInit {
   // @Output() personCreate = new EventEmitter<Person>();
-  // nameInput: string = '';
-  // lastnameInput: string = '';
-  @ViewChild('nameRef') nameRef: ElementRef;
-  @ViewChild('lastnameRef') lastnameRef: ElementRef;
+  nameInput: string = '';
+  lastnameInput: string = '';
+  // @ViewChild('nameRef') nameRef: ElementRef;
+  // @ViewChild('lastnameRef') lastnameRef: ElementRef;
 
   constructor(
     private logginService: LoggingService,
@@ -29,11 +29,11 @@ export class FormComponent implements OnInit {
   ngOnInit() {}
 
   storePerson() {
-    // let person = new Person(this.nameInput, this.lastnameInput);
-    let person = new Person(
-      this.nameRef.nativeElement.value,
-      this.lastnameRef.nativeElement.value
-    );
+    let person = new Person(this.nameInput, this.lastnameInput);
+    // let person = new Person(
+    //   this.nameRef.nativeElement.value,
+    //   this.lastnameRef.nativeElement.value
+    // );
     // this.logginService.sendMessageToConsole(
     //   `Persona enviada: ${person.name} ${person.lastname}`
     // );
