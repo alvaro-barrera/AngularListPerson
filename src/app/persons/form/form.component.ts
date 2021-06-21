@@ -6,6 +6,7 @@ import {
   // Output,
   ViewChild,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoggingService } from '../../LoggingService.service';
 import { Person } from '../../person.model';
 import { PersonsService } from '../../persons.service';
@@ -24,11 +25,12 @@ export class FormComponent implements OnInit {
 
   constructor(
     private logginService: LoggingService,
-    private personsService: PersonsService
+    private personsService: PersonsService,
+    private router:Router
   ) {}
   ngOnInit() {}
 
-  storePerson() {
+  handleSavePerson() {
     let person = new Person(this.nameInput, this.lastnameInput);
     // let person = new Person(
     //   this.nameRef.nativeElement.value,
@@ -39,5 +41,7 @@ export class FormComponent implements OnInit {
     // );
     // this.personCreate.emit(person);
     this.personsService.addPerson(person);
+    this.router.navigate(["persons"]);
+
   }
 }

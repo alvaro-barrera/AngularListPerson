@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoggingService } from '../LoggingService.service';
 import { Person } from '../person.model';
 import { PersonsService } from '../persons.service';
@@ -14,7 +15,8 @@ export class PersonsComponent implements OnInit {
 
   constructor(
     private logginService: LoggingService,
-    private personsService: PersonsService
+    private personsService: PersonsService,
+    private router: Router
   ) {
     this.personsService.greeting.subscribe((index: number) =>
       alert(`El índice es: ${index}`)
@@ -27,6 +29,9 @@ export class PersonsComponent implements OnInit {
 
   personStored(person: Person) {
     this.personsService.addPerson(person);
+  }
+  newRegister(){
+    this.router.navigate(["persons/create"]);
   }
 
 }

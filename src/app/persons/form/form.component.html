@@ -1,19 +1,23 @@
-<form action="" class="item">
-  <input
-    type="text"
-    id="name"
-    name="name"
-    placeholder="Nombre"
-    [(ngModel)]="nameInput"
-  />
-  <input
-    type="text"
-    id="lastname"
-    name="lastname"
-    placeholder="Apellido"
-    [(ngModel)]="lastnameInput"
-  />
-  <button class="btn btn-primary" type="submit" (click)="storePerson()">
-    +
-  </button>
-</form>
+<div class="box">
+  <form action="" class="item" #f="ngForm" (ngSubmit)="f.form.valid && handleSavePerson()">
+    <input
+      type="text"
+      id="name"
+      name="name"
+      placeholder="Nombre"
+      [(ngModel)]="nameInput"
+      required
+    />
+    <input
+      type="text"
+      id="lastname"
+      name="lastname"
+      placeholder="Apellido"
+      [(ngModel)]="lastnameInput"
+      required
+    />
+    <button style="cursor: pointer;" type="submit">
+      +
+    </button>
+  </form>
+</div>
