@@ -28,7 +28,7 @@ export class PersonsComponent implements OnInit {
   }
 
   personStored(person: Person) {
-    this.personsService.addPerson(person);
+    this.personsService.storePerson(person);
   }
   newRegister(){
     this.router.navigate(["persons/create"]);

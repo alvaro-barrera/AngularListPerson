@@ -1,4 +1,7 @@
 <div class="item">
-  <input type="checkbox" class="btn btn-sm btn-info" (click)="emitGreeting()" />
-  <p>{{ i + 1 }}. {{ person.name }} {{ person.lastname }}</p>
+  <ul>
+    <li>
+      <a [routerLink]="['/persons',i]">{{ person.name }} {{ person.lastname }}</a>
+    </li>
+  </ul>
 </div>

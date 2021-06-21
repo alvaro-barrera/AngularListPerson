@@ -13,10 +13,19 @@ export class PersonsService {
 
   constructor(private loggingService: LoggingService) {}
 
-  addPerson(person: Person) {
+  storePerson(person: Person) {
     this.persons.push(person);
     this.loggingService.sendMessageToConsole(
       `Persona agregada al arreglo: ${person.name}`
     );
+  }
+  findPerson(index:number){
+    let person: Person = this.persons[index];
+    return person;
+  }
+  updatePerson(index:number,person:Person){
+    let personIndex: Person = this.persons[index];
+    personIndex.name = person.name;
+    personIndex.lastname = person.lastname;
   }
 }

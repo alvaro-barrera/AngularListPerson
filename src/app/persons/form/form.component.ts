@@ -1,3 +1,4 @@
+import { ifStmt } from '@angular/compiler/src/output/output_ast';
 import {
   Component,
   ElementRef,
@@ -6,7 +7,7 @@ import {
   // Output,
   ViewChild,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoggingService } from '../../LoggingService.service';
 import { Person } from '../../person.model';
 import { PersonsService } from '../../persons.service';
@@ -20,15 +21,24 @@ export class FormComponent implements OnInit {
   // @Output() personCreate = new EventEmitter<Person>();
   nameInput: string = '';
   lastnameInput: string = '';
+  index: number;
   // @ViewChild('nameRef') nameRef: ElementRef;
   // @ViewChild('lastnameRef') lastnameRef: ElementRef;
 
   constructor(
     private logginService: LoggingService,
     private personsService: PersonsService,
-    private router:Router
+    private router:Router,
+    private route: ActivatedRoute
   ) {}
-  ngOnInit() {}
+  ngOnInit() {
+    this.index = this.route.snapshot.params["id"];
+    if(this.index){
+      let person: Person = this.personsService.findPerson(this.index);
+      this.nameInput = person.name;
+      this.lastnameInput = person.lastname;
+    }
+  }
 
   handleSavePerson() {
     let person = new Person(this.nameInput, this.lastnameInput);
@@ -40,8 +50,11 @@ export class FormComponent implements OnInit {
     //   `Persona enviada: ${person.name} ${person.lastname}`
     // );
     // this.personCreate.emit(person);
-    this.personsService.addPerson(person);
+    if(this.index){
+      this.personsService.updatePerson(this.index, person);
+    }else{
+      this.personsService.storePerson(person);
+    }
     this.router.navigate(["persons"]);
-
   }
 }
