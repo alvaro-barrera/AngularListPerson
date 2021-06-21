@@ -6,9 +6,9 @@ import {
   // Output,
   ViewChild,
 } from '@angular/core';
-import { LoggingService } from '../LoggingService.service';
-import { Person } from '../person.model';
-import { PersonsService } from '../persons.service';
+import { LoggingService } from '../../LoggingService.service';
+import { Person } from '../../person.model';
+import { PersonsService } from '../../persons.service';
 
 @Component({
   selector: 'app-form',

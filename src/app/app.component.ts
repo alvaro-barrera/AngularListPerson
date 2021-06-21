@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LoggingService } from './LoggingService.service';
 import { Person } from './person.model';
 import { PersonsService } from './persons.service';
@@ -8,24 +8,6 @@ import { PersonsService } from './persons.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent  {
   title = 'AngularListPersonApp';
-  persons: Person[] = [];
-
-  constructor(
-    private logginService: LoggingService,
-    private personsService: PersonsService
-  ) {
-    this.personsService.greeting.subscribe((index: number) =>
-      alert(`El índice es: ${index}`)
-    );
-  }
-
-  ngOnInit() {
-    this.persons = this.personsService.persons;
-  }
-
-  personStored(person: Person) {
-    this.personsService.addPerson(person);
-  }
 }

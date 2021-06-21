@@ -1,13 +1,4 @@
 <div class="box" id="heading">
   <h1>{{ title }}</h1>
 </div>
-<div class="box">
-  <app-person
-    [person]="person"
-    [i]="i"
-    *ngFor="let person of persons; let i = index"
-  ></app-person>
-</div>
-<div class="box">
-  <app-form></app-form>
-</div>
+<app-persons></app-persons>
