@@ -15,11 +15,12 @@ import { ErrorComponent } from './error/error.component';
 import { DataService } from './data.service';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
+import { LoginGuardService } from './login/login-guard.service';
 
 @NgModule({
   declarations: [AppComponent, PersonComponent, FormComponent, PersonsComponent, ErrorComponent, LoginComponent],
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
-  providers: [LoggingService, PersonsService, DataService,LoginService],
+  providers: [LoggingService, PersonsService, DataService,LoginService,LoginGuardService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
