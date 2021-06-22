@@ -5,21 +5,26 @@ import { Person } from './person.model';
 
 @Injectable()
 export class PersonsService {
-  persons: Person[] = [
-    new Person('Álvaro', 'Barrera'),
-    new Person('Juan', 'Perez'),
-  ];
+  persons: Person[] = [];
 
   greeting = new EventEmitter<number>();
 
   constructor(private loggingService: LoggingService,
     private dataServices: DataServices) {}
 
-  storePerson(person: Person) {
-    this.persons.push(person);
-    this.loggingService.sendMessageToConsole(`Persona agregada al arreglo: ${person.name}`);
-    this.dataServices.savePersons(this.persons);
+  setPersons(persons: Person[]){
+    this.persons = persons;
+  }
 
+  getPersons(){
+    return this.dataServices.getPersons();
+  }
+  storePerson(person: Person) {
+    if(this.persons == null){
+      this.persons = [];
+    }
+    this.persons.push(person);
+    this.dataServices.storePerson(this.persons);
   }
   findPerson(index:number){
     let person: Person = this.persons[index];
@@ -29,8 +34,17 @@ export class PersonsService {
     let personIndex: Person = this.persons[index];
     personIndex.name = person.name;
     personIndex.lastname = person.lastname;
+    this.dataServices.updatePerson(index,person);
   }
   deletePerson(index:number){
     this.persons.splice(index,1);
+    this.dataServices.deletePerson(index);
+    this.updatePersons();
+  }
+
+  updatePersons(){
+    if(this.persons != null){
+      this.dataServices.storePerson(this.persons);
+    }
   }
 }

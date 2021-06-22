@@ -24,7 +24,13 @@ export class PersonsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.persons = this.personsService.persons;
+    this.personsService.getPersons()
+    .subscribe(
+      (persons:any ) => {
+        this.persons = persons;
+        this.personsService.setPersons(persons);
+      }
+    );
   }
 
   personStored(person: Person) {
