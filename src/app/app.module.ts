@@ -12,14 +12,14 @@ import { LoggingService } from './LoggingService.service';
 import { PersonsService } from './persons.service';
 import { PersonsComponent } from './persons/persons.component';
 import { ErrorComponent } from './error/error.component';
-import { DataServices } from './data.service';
+import { DataService } from './data.service';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
 
 @NgModule({
   declarations: [AppComponent, PersonComponent, FormComponent, PersonsComponent, ErrorComponent, LoginComponent],
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
-  providers: [LoggingService, PersonsService, DataServices,LoginService],
+  providers: [LoggingService, PersonsService, DataService,LoginService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
