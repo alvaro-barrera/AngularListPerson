@@ -6,9 +6,10 @@ import { PersonsComponent } from './persons/persons.component';
 
 const routes: Routes = [
   {path: "", component: PersonsComponent},
-  {path: "persons", component: PersonsComponent},
-  {path: "persons/create", component: FormComponent},
-  {path: "persons/:id", component: FormComponent}
+  {path: "persons", component: PersonsComponent, children:[
+    {path: "create", component: FormComponent},
+    {path: ":id", component: FormComponent}
+  ]},
 ]
 
 
