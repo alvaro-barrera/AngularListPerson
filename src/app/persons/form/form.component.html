@@ -19,5 +19,8 @@
     <button style="cursor: pointer;" type="submit">
       +
     </button>
+    <button class="btn-delete" *ngIf="index !=null" style="cursor: pointer;" type="submit" (click)="deletePerson()">
+      -
+    </button>
   </form>
 </div>

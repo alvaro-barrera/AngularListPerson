@@ -57,4 +57,10 @@ export class FormComponent implements OnInit {
     }
     this.router.navigate(["persons"]);
   }
+  deletePerson(){
+    if(this.index != null){
+      this.personsService.deletePerson(this.index);
+    }
+    this.router.navigate(["persons"]);
+  }
 }
