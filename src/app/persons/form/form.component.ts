@@ -22,6 +22,7 @@ export class FormComponent implements OnInit {
   nameInput: string = '';
   lastnameInput: string = '';
   index: number;
+  editionMode: number;
   // @ViewChild('nameRef') nameRef: ElementRef;
   // @ViewChild('lastnameRef') lastnameRef: ElementRef;
 
@@ -33,7 +34,9 @@ export class FormComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.index = this.route.snapshot.params["id"];
-    if(this.index){
+    this.editionMode = +this.route.snapshot.params["editionMode"];
+    if(this.editionMode != null && this.editionMode ===1){
+      // if(this.index){
       let person: Person = this.personsService.findPerson(this.index);
       this.nameInput = person.name;
       this.lastnameInput = person.lastname;
@@ -50,7 +53,8 @@ export class FormComponent implements OnInit {
     //   `Persona enviada: ${person.name} ${person.lastname}`
     // );
     // this.personCreate.emit(person);
-    if(this.index){
+    // if(this.index){
+    if(this.editionMode != null && this.editionMode ===1){
       this.personsService.updatePerson(this.index, person);
     }else{
       this.personsService.storePerson(person);
