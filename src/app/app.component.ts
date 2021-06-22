@@ -1,13 +1,19 @@
-import { Component } from '@angular/core';
-import { LoggingService } from './LoggingService.service';
-import { Person } from './person.model';
-import { PersonsService } from './persons.service';
+import { Component, OnInit } from '@angular/core';
+import  firebase from "firebase";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent  {
+export class AppComponent  implements OnInit{
   title = 'AngularListPersonApp';
+
+  ngOnInit():void{
+   firebase.initializeApp({
+    apiKey: "AIzaSyBKHSgVQeGO5nJs7qQY_Hav5ngXLj5Xdrw",
+    authDomain: "contactscheduleapp.firebaseapp.com",
+   })
+
+  }
 }

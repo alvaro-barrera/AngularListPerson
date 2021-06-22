@@ -4,15 +4,18 @@ import { LoggingService } from "./LoggingService.service";
 import { Person } from "./person.model";
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { LoginService } from "./login/login.service";
 @Injectable()
 export class DataServices{
   baseUrl: string = "https://contactscheduleapp-default-rtdb.firebaseio.com/datos.json";
   constructor(private httpClient: HttpClient,
-    private loggingService: LoggingService){
+    private loggingService: LoggingService,
+    private loginService: LoginService){
   }
 
   getPersons(){
-    return this.httpClient.get(`${this.baseUrl}`);
+    const token = this.loginService.getIdToken();
+    return this.httpClient.get(`${this.baseUrl}?auth=${token}`);
   }
 
   storePerson(persons: Person[]){
